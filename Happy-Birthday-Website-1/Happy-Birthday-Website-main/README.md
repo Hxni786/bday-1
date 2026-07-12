@@ -47,6 +47,6 @@ To deploy this project or customize it for your own special events:
 Developed and maintained by **The Cipher Stack**.
 
 - **Instagram**: [@the.cipher.stack](https://www.instagram.com/the.cipher.stack?igsh=dmdnbGNzbDNpZzlu)
-- **GitHub**: [The Cipher Stack](https://github.com/Hxni@786)
+- **GitHub**: [Hxni786](https://github.com/Hxni786)
 
 Feel free to fork this project, open issues, or submit pull requests to enhance the features!
