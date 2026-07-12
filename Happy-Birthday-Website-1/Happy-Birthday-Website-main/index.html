@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Happy Birthday | Aoudumber Bade">
+    <meta name="github" content="https://github.com/Aoudumber-Bade">
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="website icon" type="png" href="image/heart.png"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <title>Have a Happy Birthday!</title>
+</head>
+<body>
+    <div class="container">
+        <div class="boxcontainer">
+            <div class="image">
+                <img src="flag.png" alt="">
+            </div>
+            <div class="text-happybirthday">
+                <img src="texthappy.png" alt="">
+            </div>
+            <div class="cake">
+                <img src="cake.png" alt="">
+            </div>
+            <div class="box-balloon">
+                <div class="balloon-item1">
+                    <img src="balloon.png" alt="">
+                </div>
+                <div class="balloon-item1">
+                    <img src="balloon.png" alt="">
+                </div>
+            </div>
+            <div class="box-cloud">
+                <div class="cloud">
+                    <img src="cloud.png" alt="">
+                </div>
+                <div class="cloud">
+                    <img src="cloud.png" alt="">
+                </div>
+            </div>
+            <div class="box-firework">
+                <div class="firework">
+                    <img src="firework.png" alt="">
+                    <img src="firework1.png" alt="" id="firework1">
+                </div>
+                <div class="firework">
+                    <img src="firework.png" alt="">
+                    <img src="firework1.png" alt="" id="firework1">
+                </div>
+            </div>
+            <div class="paperCannons">
+                <img src="paperCannons1.png" alt="">
+            </div>
+            <div class="box-giftbox">
+                <img src="giftbox.png" alt="">
+                <img src="giftbox.png" alt="">
+                <img src="giftbox.png" alt="">
+                <img src="giftbox.png" alt="">
+                <img src="giftbox.png" alt="">
+                <img src="giftbox.png" alt="">
+            </div>
+            <div class="mail">
+                <i class="fa-regular fa-envelope"></i>
+            </div>
+            <div class="boxcute">
+                <div class="cute1">
+                    <img src="cute.png" alt="">
+                </div>
+                <div class="cute2">
+                    <img src="cute.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="boxMail">
+            <i class="fa-solid fa-xmark"></i>
+            <div class="boxMail-container">
+                <div class="card1">
+                    <div class="userImg">
+                        <img src="truongan.png" alt="">
+                    </div>
+                    <h3>Happy Birthday</h3>
+                    <div class="imageCute">
+                        <img src="cute1.png" alt="">
+                    </div>
+                </div>
+                <div class="card2">
+                    <div class="card2-content">
+                        <h3>To You!</h3>
+                        <h2>Dear Love,
+
+From the moment you walked into my life, you turned my whole world upside down in the most beautiful way. I think about you in the quiet of the morning and the rush of the afternoon. You are the smile on my face, the warmth in my chest, and the crazy, beautiful melody my heart plays on repeat.
+
+On this special day, I want you to know that my heart will always beat to your rhythm. May your day be as magical and radiant as you are to me.
+
+Your love</h2>
+                        <div class="imageCute2">
+                            <img src="cute2.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+	<div id="copy">
+		<p class="text-center text-white text-sm">OG Creator <a
+			href="https://www.instagram.com/the.cipher.stack?igsh=dmdnbGNzbDNpZzlu">@the.cipher.stack</a></p>
+	  </div>
+</body>
+    <script>
+        document.addEventListener('mousemove', function(e){
+            let body = document.querySelector('body');
+            let heart = document.createElement('span');
+            heart.classList.add('heart-particle');
+            let x = e.offsetX;
+            let y = e.offsetY;
+            heart.style.left = x+'px';
+            heart.style.top = y+'px';
+
+            let size = Math.random() * 10;
+            heart.style.width = 4 * size+'px';
+            heart.style.height = 4 * size+'px';
+
+            let transformValue = Math.random() * 360;
+            heart.style.transform = 'rotate('+ transformValue +'deg)';
+
+            body.appendChild(heart);
+
+            setTimeout(function(){
+                heart.remove();
+            },1000)
+        })
+
+        let mailBox = document.querySelector('.mail')
+        let boxmail = document.querySelector('.boxMail')
+        var close = document.querySelector('.fa-xmark')
+        
+        let boxMailContainer = document.querySelector('.boxMail-container');
+        let h2Element = document.querySelector('.card2-content h2');
+        let rawText = h2Element.textContent.trim();
+        let letterText = rawText;
+        h2Element.innerText = '';
+        
+        let isTyping = false;
+        let hasTyped = false;
+        let typingInterval = null;
+
+        mailBox.onclick = function(){
+            mailBox.classList.toggle('active')
+            boxmail.classList.add('active')
+        }
+
+        close.addEventListener('click', function(){
+            boxmail.classList.remove('active')
+            // Reset typewriter on close so it can replay next time
+            clearInterval(typingInterval);
+            h2Element.innerText = '';
+            isTyping = false;
+            hasTyped = false;
+        })
+
+        // Typewriter animation trigger
+        boxMailContainer.addEventListener('mouseenter', function() {
+            if (hasTyped || isTyping) return;
+            isTyping = true;
+            h2Element.innerText = '';
+            
+            // Delay typing to start precisely when card finishes flipping open (approx 800ms)
+            setTimeout(() => {
+                let i = 0;
+                typingInterval = setInterval(() => {
+                    if (i < letterText.length) {
+                        h2Element.innerHTML += letterText.charAt(i) === '\n' ? '<br>' : letterText.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typingInterval);
+                        isTyping = false;
+                        hasTyped = true;
+                    }
+                }, 35); // Comfortable typing speed
+            }, 800);
+        });
+
+        let cakeImg = document.querySelector('.cake img');
+        cakeImg.addEventListener('click', function() {
+            let overlay = document.createElement('div');
+            overlay.style.position = 'fixed';
+            overlay.style.top = '0';
+            overlay.style.left = '0';
+            overlay.style.width = '100vw';
+            overlay.style.height = '100vh';
+            overlay.style.backgroundColor = 'rgba(10, 0, 10, 0.9)'; // Dark romantic night background
+            overlay.style.zIndex = '9999999999';
+            overlay.style.display = 'flex';
+            overlay.style.justifyContent = 'center';
+            overlay.style.alignItems = 'center';
+            overlay.style.flexDirection = 'column';
+            overlay.style.opacity = '0';
+            overlay.style.transition = 'opacity 1s ease';
+            
+            let msg = document.createElement('h1');
+            msg.innerHTML = 'Happy Birthday My Love ❤️<br><span style="font-size: 2rem; color: #ffebf0; font-weight: normal; font-family: \'Courier Prime\', monospace;">Wishing you a beautiful year ahead!</span>';
+            msg.style.color = '#ff4275';
+            msg.style.fontFamily = "'Dancing Script', cursive";
+            msg.style.fontSize = '4.5rem';
+            msg.style.textAlign = 'center';
+            msg.style.textShadow = '0 0 15px #ff4275, 0 0 30px #ff4275, 0 0 45px #ffffff';
+            msg.style.transform = 'scale(0.3) rotate(-5deg)';
+            msg.style.transition = 'all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            msg.style.lineHeight = '1.3';
+            
+            overlay.appendChild(msg);
+            document.body.appendChild(overlay);
+            
+            // Scale and fade in the romantic message overlay
+            setTimeout(() => {
+                overlay.style.opacity = '1';
+                msg.style.transform = 'scale(1) rotate(0deg)';
+            }, 100);
+            
+            // 1. Fireworks / Confetti Explosion
+            let duration = 6 * 1000;
+            let animationEnd = Date.now() + duration;
+            let defaults = { startVelocity: 35, spread: 360, ticks: 100, zIndex: 10000000005, scalar: 1.2 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            let confettiInterval = setInterval(function() {
+                let timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(confettiInterval);
+                }
+
+                let particleCount = 60 * (timeLeft / duration);
+                
+                // Hearts colored confetti
+                confetti(Object.assign({}, defaults, {
+                    particleCount,
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+                    colors: ['#ff4275', '#ff8da9', '#ffffff', '#ff0a7c']
+                }));
+                confetti(Object.assign({}, defaults, {
+                    particleCount,
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+                    colors: ['#ff4275', '#ff8da9', '#ffffff', '#ff0a7c']
+                }));
+            }, 250);
+
+            // Center confetti blast
+            setTimeout(() => {
+                confetti({
+                    particleCount: 150,
+                    spread: 80,
+                    origin: { y: 0.6 },
+                    colors: ['#ff4275', '#ff8da9', '#ffffff', '#ff0a7c'],
+                    zIndex: 10000000005
+                });
+            }, 500);
+            
+            // 2. Floating Romantic Hearts
+            for(let i = 0; i < 80; i++) {
+                setTimeout(() => {
+                    let heart = document.createElement('span');
+                    heart.classList.add('heart-particle');
+                    let size = Math.random() * 35 + 15;
+                    heart.style.width = size + 'px';
+                    heart.style.height = size + 'px';
+                    heart.style.left = (Math.random() * 100) + 'vw';
+                    heart.style.top = '110vh';
+                    heart.style.position = 'fixed';
+                    heart.style.zIndex = '9999999999';
+                    heart.style.transition = 'top 5s linear, transform 5s linear, opacity 5s ease-out';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.style.top = '-20vh';
+                        heart.style.transform = `translateX(${Math.random() * 300 - 150}px) rotate(${Math.random() * 720}deg)`;
+                    }, 50);
+                    
+                    setTimeout(() => heart.remove(), 5000);
+                }, i * 60);
+            }
+            
+            overlay.addEventListener('click', () => {
+                overlay.style.opacity = '0';
+                clearInterval(confettiInterval);
+                setTimeout(() => overlay.remove(), 1000);
+            });
+        });
+    </script>
+</html>
